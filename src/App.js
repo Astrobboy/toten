@@ -16,6 +16,8 @@ import DashStartVariedade from './components/Dashboard/dashstarts/dash_start_var
 import DashStartPacote from './components/Dashboard/dashstarts/dash_start_pacote';
 import DashStartPrecio from './components/Dashboard/dashstarts/dash_start_precio';
 import DashStartProbabilidad from './components/Dashboard/dashrecomendar';
+import Keybor from './components/test/keyboard';
+
 
 class App extends Component {
  
@@ -38,6 +40,7 @@ class App extends Component {
             <Route exact path="/startvariedade" component={DashStartVariedade} />
             <Route exact path="/startpacote" component={DashStartPacote} />
             <Route exact path="/startprecio" component={DashStartPrecio} />
+            <Route exact path="/key" component={Keybor} />
           
           </div>
         </Router>

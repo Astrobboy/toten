@@ -21,7 +21,7 @@ class DashStartAtendimiento extends Component {
   getChartData(){
     let [contAtendimiento1, contAtendimiento2, contAtendimiento3, contAtendimiento4, contAtendimiento5] = [0, 0, 0, 0, 0]
     let labels = ['Uno', 'Dos', 'Tres', 'Cuatro', 'Cinco']
-    axios.get('http://localhost:5000/data').then((res) => {
+    axios.get('http://10.10.10.35:5000/data').then((res) => {
       
       for (let i = 0; i < res.data.datos.length; i++) {
         if (res.data.datos[i].atendimiento === '1'){

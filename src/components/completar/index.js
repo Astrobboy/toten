@@ -4,6 +4,7 @@ import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
 import axios from 'axios';
+import Keyboard from 'react-virtual-keyboard';
 
 var valores = (nombre, value) =>{
   localStorage.setItem(`${nombre}`, `${value}`)
@@ -11,8 +12,19 @@ var valores = (nombre, value) =>{
 
 
 class Completar extends Component {
-  handleValue(e){
-    if (e.target.name === 'comentario'){
+  handleValueComentario(e){
+    valores('comentario', e)
+  }
+  handleValueNome(e) {
+    valores('nome', e)
+  }
+  handleValueTelefone(e) {
+    valores('telefone', e)
+  }
+  handleValueGmail(e) {
+    valores('gmail', e)
+  }
+    /*if (e.target.id === 'comentario'){
       valores('comentario', e.target.value)
     } else if (e.target.name === 'nome'){
       valores('nome', e.target.value)
@@ -20,9 +32,9 @@ class Completar extends Component {
       valores('telefone', e.target.value)
     } else if (e.target.name === 'gmail') {
       valores('gmail', e.target.value)
-    }
+    }*/
     
-  }
+  
   enviar(){
     var meses = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
     var diasSemana = new Array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
@@ -56,7 +68,168 @@ class Completar extends Component {
     return (
       <div id="container">
         <form>
-          <div className='nome'>
+          <div className='contenedor'>
+            <div className='uno'>
+              <i className="material-icons">comment</i> 
+            </div>
+            <div className='dos'>
+              <Keyboard 
+                  id = 'comentario'
+                  name='comentario'
+                  placeholder='Espaco para comentário'
+                  options={{
+                      type:"input",
+                      layout: "qwerty",
+                      alwaysOpen: false,
+                      usePreview: false,
+                      useWheel: false,
+                      stickyShift: false,
+                      appendLocally: true,
+                      color: "white",
+                      updateOnChange: true,
+                      initialFocus: true,
+                      display: {
+                      "accept" : "Aceptar",
+                      "cancel": "↑"
+                      }
+                  }}
+                  onChange={this.handleValueComentario}
+                  
+                  />
+            </div>
+
+          </div>
+          <div className='divide'></div>
+
+          <div className='contenedor'>
+            <div className='uno'>
+              <i className="material-icons">account_box</i> 
+            </div>
+            <div className='dos'>
+              <Keyboard 
+                  value=''
+                  name='nome'
+                  placeholder='Nome'
+                  required
+                  className = 'pb'
+                  options={{
+                      type:"input",
+                      layout: "qwerty",
+                      alwaysOpen: false,
+                      usePreview: false,
+                      useWheel: false,
+                      stickyShift: false,
+                      appendLocally: true,
+                      color: "white",
+                      updateOnChange: true,
+                      initialFocus: true,
+                      display: {
+                      "accept" : "Aceptar",
+                      "cancel": "↑"
+                      }
+                  }}
+                  onChange={this.handleValueNome}
+                  />
+            </div>
+          </div>
+
+           <div className='divide'></div>
+
+          <div className='contenedor'>
+            <div className='uno'>
+              <i className="material-icons">settings_cell</i> 
+            </div>
+            <div className='dos'>
+              <Keyboard 
+                  value=''
+                  name='telefone'
+                  placeholder='Telefone'
+                  required
+                  className = 'pb'
+                  options={{
+                      type:"input",
+                      layout: "qwerty",
+                      alwaysOpen: false,
+                      usePreview: false,
+                      useWheel: false,
+                      stickyShift: false,
+                      appendLocally: true,
+                      color: "white",
+                      updateOnChange: true,
+                      initialFocus: true,
+                      display: {
+                      "accept" : "Aceptar",
+                      "cancel": "↑"
+                      }
+                  }}
+                  onChange={this.handleValueTelefone}
+                  //onAccepted={this.onInputSubmitted}
+                  ref={k => this.keyboard = k}
+                  />
+            </div>
+          </div>
+
+           <div className='divide'></div>
+
+          <div className='contenedor'>
+            <div className='uno'>
+              <i className="material-icons">perm_contact_calendar</i> 
+            </div>
+            <div className='dos'>
+              <Keyboard 
+                  value=''
+                  name='gmail'
+                  placeholder='Gmail'
+                  required
+                  className = 'pb'
+                  options={{
+                      type:"input",
+                      layout: "qwerty",
+                      alwaysOpen: false,
+                      usePreview: false,
+                      useWheel: false,
+                      stickyShift: false,
+                      appendLocally: true,
+                      color: "white",
+                      updateOnChange: true,
+                      initialFocus: true,
+                      display: {
+                      "accept" : "Aceptar",
+                      "cancel": "↑"
+                      }
+                  }}
+                  onChange={this.handleValueGmail}
+                  //onAccepted={this.onInputSubmitted}
+                  ref={k => this.keyboard = k}
+                  />
+            </div>
+          </div>
+    
+          
+         
+
+          
+          <div className='button'>
+            <Button color="primary" onClick={this.enviar}>
+              <i className="material-icons">check_circle</i>
+              Finalizar
+            </Button>
+          </div>
+        </form>
+      </div>
+
+    );
+  }
+}
+
+export default Completar;
+
+
+/*
+
+
+
+<div className='nome'>
             <Grid container spacing={8} alignItems="flex-end">
               <Grid item>
                 <i className="material-icons">comment</i>
@@ -124,17 +297,4 @@ class Completar extends Component {
               </Grid>
             </Grid>
           </div>
-          <div className='button'>
-            <Button color="primary" onClick={this.enviar}>
-              <i className="material-icons">check_circle</i>
-              Finalizar
-            </Button>
-          </div>
-        </form>
-      </div>
-
-    );
-  }
-}
-
-export default Completar;
+          */

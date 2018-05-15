@@ -21,7 +21,7 @@ class DashStartQualidade extends Component {
   getChartData(){
     let [contQualidade1, contQualidade2, contQualidade3, contQualidade4, contQualidade5] = [0, 0, 0, 0, 0]
     let labels = ['Uno', 'Dos', 'Tres', 'Cuatro', 'Cinco']
-    axios.get('http://localhost:5000/data').then((res) => {
+    axios.get('http://10.10.10.35:5000/data').then((res) => {
       
       for (let i = 0; i < res.data.datos.length; i++) {
         if (res.data.datos[i].qualidade === '1'){

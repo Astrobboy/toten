@@ -21,7 +21,7 @@ class DashStartPacote extends Component {
   getChartData(){
     let [contPacote1, contPacote2, contPacote3, contPacote4, contPacote5] = [0, 0, 0, 0, 0]
     let labels = ['Uno', 'Dos', 'Tres', 'Cuatro', 'Cinco']
-    axios.get('http://localhost:5000/data').then((res) => {
+    axios.get('http://10.10.10.35:5000/data').then((res) => {
       
       for (let i = 0; i < res.data.datos.length; i++) {
         if (res.data.datos[i].pacote === '1'){
