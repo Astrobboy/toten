@@ -56,8 +56,6 @@ div.keyboard-wrapper>div.ui-keyboard>div.ui-keyboard-keyset>button:hover {
 */
 
 
-
-/* form starting stylings ------------------------------- */
 .group 			  { 
   position:relative; 
   margin-bottom:45px; 
@@ -74,32 +72,5 @@ input:focus 		{ outline:none; }
 
 
 
-/* active state */
-input:focus ~ label, input:valid ~ label {
-  top:-20px;
-  font-size:14px;
-  color:#5264AE;
-}
 
-/* active state */
-input:focus ~ .bar:before, input:focus ~ .bar:after {
-  width:50%;
-}
 
-/* HIGHLIGHTER ================================== */
-.highlight {
-  position:absolute;
-  height:60%; 
-  width:100px; 
-  top:25%; 
-  left:0;
-  pointer-events:none;
-  opacity:0.5;
-}
-
-/* active state */
-input:focus ~ .highlight {
-  -webkit-animation:inputHighlighter 0.3s ease;
-  -moz-animation:inputHighlighter 0.3s ease;
-  animation:inputHighlighter 0.3s ease;
-}
