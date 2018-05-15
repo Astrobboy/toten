@@ -1,0 +1,34 @@
+.cono{
+  background: #fff;
+  border: 2px solid #BDBDBD;
+  padding: 10px;
+  border-radius: 25px;
+  width: 300px;
+  height: 80px;
+  font-size: 1em;
+  color: #757575;
+  margin-left: 3px ;
+  text-align: left;
+} 
+
+button.cono:hover{
+  border: 2px solid #76FF03;
+  color: #212121;
+}
+
+
+.titlec{
+  font-size: 45px;
+}
+
+.conociste {
+  margin-top: 10px;
+  height: auto;
+  font-size: 1.5em;
+  margin-left: 105px;
+  
+}
+
+.prin-co{
+    width: 50%
+}

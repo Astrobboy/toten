@@ -1,0 +1,49 @@
+/*traer al medio el el contenido*/
+form ,form p, form input[type = "submit"] {
+  text-align: right;  
+  font-size: 20px;
+}
+/*dando un color gris a las estrellas*/
+
+label {
+  color: grey;
+}
+
+/*escondo los botones de radio*/
+
+input[type="radio"] {
+  display: none;
+}
+
+.clasificacion{
+      direction: rtl;/* right to left */
+      unicode-bidi: bidi-override;/* bidi de bidireccional */
+      font-size: 30px;
+  }
+
+
+
+/*Al pasar por encima las etiquetas <label>( o sea: las estrellas) cambian de color*/
+label:hover {
+  color: orange;
+}
+/*También cambian de color todas las etiquetas <label> precedidas ( ~ ) por aquella <label> que tiene el ratón encima ( hover ).*/
+label:hover ~ label{color:orange;}
+
+/*Al marcar el botón de radio ( radio:checked ) todas las etiquetas <label> que le preceden ( ~ ) se vuelven color naranja*/
+
+input[type = "radio"]:checked ~ label{color:orange;}
+
+p,
+p.clasificacion {
+  display: inline;
+}
+
+.cont-valoration{
+  width: 30%;
+  height: 100px;
+}
+
+.atri{
+  font-size: 20px;
+}
