@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 //import Webcam from 'react-webcam';
-//import axios from 'axios';
+import axios from 'axios';
 
 import './style.css';
 
 
 var cargar = (num) => {
-  localStorage.setItem('probabilidad', num);
-  window.location.href = '/start'
-  /*var data = {'bool':true}
-  /*axios({
+  var data = {'bool':true}
+  axios({
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       url: 'http://localhost:5000/',
@@ -22,7 +20,7 @@ var cargar = (num) => {
     })
     .catch(function (response) {
 	console.log(response);
-    });*/
+    });
 
 }
 
