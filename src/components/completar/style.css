@@ -105,6 +105,13 @@ button.ui-keyboard-space {
 
 div.keyboard-wrapper>div.ui-keyboard>div.ui-keyboard-keyset>button.ui-keyboard-space{
   background: #FFE0B2;
+  width: 140px;
+  height: 33px;
+  
+}
+
+div.keyboard-wrapper>div.ui-keyboard>div.ui-keyboard-keyset>button.ui-keyboard-space:hover{
+    background-color: #D1C4E9;
 }
 
 div.keyboard-wrapper>div.ui-keyboard>div.ui-keyboard-keyset {
