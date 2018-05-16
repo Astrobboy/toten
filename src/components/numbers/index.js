@@ -5,9 +5,11 @@ import axios from 'axios';
 import './style.css';
 
 
-var cargar = (num, image) => {
-  var data = {'bool':true}
-  axios({
+var cargar = (num) => {
+  localStorage.setItem('probabilidad', num);
+  window.location.href = '/start'
+  /*var data = {'bool':true}
+  /*axios({
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       url: 'http://localhost:5000/',
@@ -20,39 +22,39 @@ var cargar = (num, image) => {
     })
     .catch(function (response) {
 	console.log(response);
-    });
+    });*/
 
 }
 
 class Number extends Component {
   
-  setRef = (webcam) => {
+  /*setRef = (webcam) => {
     this.webcam = webcam;
-  }
+  }*/
 
   mandar = (e) => {
     //para probar en python
-    const imageSrc = this.webcam.getScreenshot();
+    //const imageSrc = this.webcam.getScreenshot();
     if(e.target.id === "10") {
-        cargar(10,imageSrc);
+        cargar(10);
     } else if (e.target.id === "9") {
-      cargar(9,imageSrc);
+      cargar(9);
     } else if (e.target.id === "8") {
-      cargar(8,imageSrc);
+      cargar(8);
     } else if (e.target.id === "7") {
-      cargar(7,imageSrc);
+      cargar(7);
     } else if (e.target.id === "6") {
-      cargar(6,imageSrc);
+      cargar(6);
     } else if (e.target.id === "5") {
-      cargar(5,imageSrc);
+      cargar(5);
     } else if (e.target.id === "4") {
-      cargar(4,imageSrc);
+      cargar(4);
     } else if (e.target.id === "3") {
-      cargar(3,imageSrc);
+      cargar(3);
     } else if (e.target.id === "2") {
-      cargar(2,imageSrc);
+      cargar(2);
     } else if (e.target.id === "1") {
-      cargar(1,imageSrc);
+      cargar(1);
     }
     
   }
@@ -60,8 +62,8 @@ class Number extends Component {
   render() { 
     return (
       <div className='number'>
-        <p className='title'>Qual a probabilidade de voce recomendar</p>
-        <p className='title'> a Atacado Games a un amigo?</p>
+        <p className='title'>Qual a probabilidade de voce recomendar a</p>
+        <p className='title'> Atacado Games a un amigo?</p>
         <div className='con-label'>
           <p>Extremadamente provável</p>
           <div className='con-label2'/>
@@ -110,6 +112,7 @@ class Number extends Component {
           </div>
         </div>
 
+        {/*
         <div className="mostrar">
           <Webcam
             audio={false}
@@ -119,6 +122,7 @@ class Number extends Component {
             width={350}
           />
         </div>
+        */}
       </div>
     );
   }

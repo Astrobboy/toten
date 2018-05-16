@@ -18,7 +18,7 @@ def getImage():
 
 
 
-@app.route('/hello', methods = ['POST', 'GET'])
+@app.route('/data', methods = ['POST', 'GET'])
 def test():
     if request.method == 'POST':
         datos = { 'nombre' : 'raul'}

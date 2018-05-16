@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
 import Button from 'material-ui/Button';
-import TextField from 'material-ui/TextField';
-import Grid from 'material-ui/Grid';
 import axios from 'axios';
 import Keyboard from 'react-virtual-keyboard';
 
@@ -12,9 +10,6 @@ var valores = (nombre, value) =>{
 
 
 class Completar extends Component {
-  handleValueComentario(e){
-    valores('comentario', e)
-  }
   handleValueNome(e) {
     valores('nome', e)
   }
@@ -54,7 +49,7 @@ class Completar extends Component {
     axios({
       method: 'post',
       headers: {'Content-Type': 'application/json'},
-      url: 'http://localhost:5000/hello',
+      url: 'http://localhost:5000/data',
       data: JSON.stringify(data)
     }).then((res) =>{
 		window.location.href = 'http://localhost:3000/';
@@ -68,38 +63,6 @@ class Completar extends Component {
     return (
       <div id="container">
         <form>
-          <div className='contenedor'>
-            <div className='uno'>
-              <i className="material-icons">comment</i> 
-            </div>
-            <div className='dos'>
-              <Keyboard 
-                  id = 'comentario'
-                  name='comentario'
-                  placeholder='Espaco para comentário'
-                  options={{
-                      type:"input",
-                      layout: "qwerty",
-                      alwaysOpen: false,
-                      usePreview: false,
-                      useWheel: false,
-                      stickyShift: false,
-                      appendLocally: true,
-                      color: "white",
-                      updateOnChange: true,
-                      initialFocus: true,
-                      display: {
-                      "accept" : "Aceptar",
-                      "cancel": "↑"
-                      }
-                  }}
-                  onChange={this.handleValueComentario}
-                  
-                  />
-            </div>
-
-          </div>
-          <div className='divide'></div>
 
           <div className='contenedor'>
             <div className='uno'>

@@ -5,6 +5,7 @@ import Start from './components/start';
 import Numbers from './components/numbers';
 import Conociste from './components/conociste';
 import Encontro from './components/encontro';
+import Comentario from './components/completar/comentario';
 import Completar from './components/completar';
 import Dashboard from './components/Dashboard';
 import DashboardList from './components/Dashboard/dashlist';
@@ -29,6 +30,7 @@ class App extends Component {
             <Route exact path="/start" component={Start} />
             <Route exact path="/conociste" component={Conociste} />
             <Route exact path="/encontro" component={Encontro} />
+            <Route exact path="/comentario" component={Comentario} />
             <Route exact path="/completar" component={Completar} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/list" component={DashboardList} />

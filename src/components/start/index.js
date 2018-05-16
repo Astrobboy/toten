@@ -72,7 +72,7 @@ class Start extends Component {
     return (
     <div className='cont-valoration'> 
         <h1>Por favor, avalie os items abaixo:</h1>
-          <form action='/enseveremos' method='post'>
+          <form className='start-form' action='/enseveremos' method='post'>
             <p className='atri'>Atendimiento: </p>
             <p className="clasificacion">
               <input id="radio15" type="radio" name="atendimiento" value="5"/>

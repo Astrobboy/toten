@@ -1,7 +1,8 @@
 /*traer al medio el el contenido*/
-form ,form p, form input[type = "submit"] {
+form.start-form ,form p, form input[type = "submit"] {
   text-align: right;  
   font-size: 20px;
+  margin-right: 5px;
 }
 /*dando un color gris a las estrellas*/
 
@@ -40,10 +41,11 @@ p.clasificacion {
 }
 
 .cont-valoration{
-  width: 30%;
+  margin-top: 20px;
   height: 100px;
 }
 
 .atri{
   font-size: 20px;
 }
+

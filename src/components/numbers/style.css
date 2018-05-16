@@ -16,8 +16,10 @@ button.but:hover{
 }
 
 .flo{
-  float:left;
+  float:right;
   margin-top: 50px;
+  /*clear: both;*/
+  
 }
 
 .num{
@@ -39,12 +41,13 @@ button.but:hover{
   position: absolute;
   right: 0;
   margin-top: 10px;
+  
 }
 
 
 .number {
   margin-top: 50px;
-  width: 70%;
+  width: 100%;
   height: auto;
   font-size: 1.5em;
 }
@@ -52,6 +55,7 @@ button.but:hover{
 .con-label {
   float:left;
   margin-top: 100px;
+  width: 20px;
 }
 .con-label2{
   height: 250px;
