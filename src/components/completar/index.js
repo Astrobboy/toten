@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
-import './style.css';
-import Button from 'material-ui/Button';
+
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
+import Keyboard from 'react-material-ui-keyboard';
+import { extendedKeyboard } from 'react-material-ui-keyboard/layouts';
+import * as injectTapEventPlugin from 'react-tap-event-plugin';
+
 import axios from 'axios';
-import Keyboard from 'react-virtual-keyboard';
+import './style.css';
+
+
+const numericKeyboard = [
+  ['Escape', '-', 'Backspace'],
+  ['7',      '8',         '9'],
+  ['4',      '5',         '6'],
+  ['1',      '2',         '3'],
+  ['0',      '+',     'Enter']
+]; 
 
 var valores = (nombre, value) =>{
   localStorage.setItem(`${nombre}`, `${value}`)
@@ -10,25 +24,40 @@ var valores = (nombre, value) =>{
 
 
 class Completar extends Component {
-  handleValueNome(e) {
-    valores('nome', e)
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+      nome: '',
+      telefone: '',
+      gmail: ''
+    };
+    this.onInputNome = this.handleInputNome.bind(this);
+    this.onInputTelefone = this.handleInputTelefone.bind(this);
+    this.onInputGmail = this.handleInputGmail.bind(this);
   }
-  handleValueTelefone(e) {
-    valores('telefone', e)
+
+  handleInputNome(input) {
+    valores('nome', input)
+    this.setState({
+      nome: input
+    });
   }
-  handleValueGmail(e) {
-    valores('gmail', e)
+
+  handleInputTelefone(input) {
+    valores('telefone', input)
+    this.setState({
+      telefone: input
+    });
   }
-    /*if (e.target.id === 'comentario'){
-      valores('comentario', e.target.value)
-    } else if (e.target.name === 'nome'){
-      valores('nome', e.target.value)
-    } else if (e.target.name === 'telefone') {
-      valores('telefone', e.target.value)
-    } else if (e.target.name === 'gmail') {
-      valores('gmail', e.target.value)
-    }*/
-    
+
+  handleInputGmail(input) {
+    valores('gmail', input)
+    this.setState({
+      gmail: input
+    });
+  }
+
   
   enviar(){
     var meses = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
@@ -69,30 +98,21 @@ class Completar extends Component {
               <i className="material-icons">account_box</i> 
             </div>
             <div className='dos'>
-              <Keyboard 
-                  value=''
-                  name='nome'
-                  placeholder='Nome'
-                  required
-                  className = 'pb'
-                  options={{
-                      type:"input",
-                      layout: "qwerty",
-                      alwaysOpen: false,
-                      usePreview: false,
-                      useWheel: false,
-                      stickyShift: false,
-                      appendLocally: true,
-                      color: "white",
-                      updateOnChange: true,
-                      initialFocus: true,
-                      display: {
-                      "accept" : "Aceptar",
-                      "cancel": "↑"
-                      }
-                  }}
-                  onChange={this.handleValueNome}
+              <Keyboard
+                textField={
+                  <TextField
+                    id="text"
+                    value={this.state.nome}
+                    floatingLabelText="Nome"
                   />
+                }
+                automatic
+                onInputValueChange={this.onInputNome}
+                layouts={[extendedKeyboard]}
+                keyboardKeyHeight={50}
+                keyboardKeyWidth={100}
+                keyboardKeySymbolSize={36}
+              />
             </div>
           </div>
 
@@ -103,32 +123,21 @@ class Completar extends Component {
               <i className="material-icons">settings_cell</i> 
             </div>
             <div className='dos'>
-              <Keyboard 
-                  value=''
-                  name='telefone'
-                  placeholder='Telefone'
-                  required
-                  className = 'pb'
-                  options={{
-                      type:"input",
-                      layout: "qwerty",
-                      alwaysOpen: false,
-                      usePreview: false,
-                      useWheel: false,
-                      stickyShift: false,
-                      appendLocally: true,
-                      color: "white",
-                      updateOnChange: true,
-                      initialFocus: true,
-                      display: {
-                      "accept" : "Aceptar",
-                      "cancel": "↑"
-                      }
-                  }}
-                  onChange={this.handleValueTelefone}
-                  //onAccepted={this.onInputSubmitted}
-                  ref={k => this.keyboard = k}
+              <Keyboard
+                textField={
+                  <TextField
+                    id="text"
+                    value={this.state.telefone}
+                    floatingLabelText="Telefone"
                   />
+                }
+                automatic
+                onInputValueChange={this.onInputTelefone}
+                layouts={[numericKeyboard]}
+                keyboardKeyHeight={50}
+                keyboardKeyWidth={100}
+                keyboardKeySymbolSize={36}
+              />
             </div>
           </div>
 
@@ -139,44 +148,29 @@ class Completar extends Component {
               <i className="material-icons">perm_contact_calendar</i> 
             </div>
             <div className='dos'>
-              <Keyboard 
-                  value=''
-                  name='gmail'
-                  placeholder='Gmail'
-                  required
-                  className = 'pb'
-                  options={{
-                      type:"input",
-                      layout: "qwerty",
-                      alwaysOpen: false,
-                      usePreview: false,
-                      useWheel: false,
-                      stickyShift: false,
-                      appendLocally: true,
-                      color: "white",
-                      updateOnChange: true,
-                      initialFocus: true,
-                      display: {
-                      "accept" : "Aceptar",
-                      "cancel": "↑"
-                      }
-                  }}
-                  onChange={this.handleValueGmail}
-                  //onAccepted={this.onInputSubmitted}
-                  ref={k => this.keyboard = k}
+              <Keyboard
+                textField={
+                  <TextField
+                    id="text"
+                    value={this.state.gmail}
+                    floatingLabelText="Gmail"
                   />
+                }
+                automatic
+                onInputValueChange={this.onInputGmail}
+                layouts={[extendedKeyboard]}
+                keyboardKeyHeight={50}
+                keyboardKeyWidth={100}
+                keyboardKeySymbolSize={36}
+              />
             </div>
           </div>
     
-          
-         
-
-          
           <div className='button'>
-            <Button color="primary" onClick={this.enviar}>
-              <i className="material-icons">check_circle</i>
-              Finalizar
-            </Button>
+            <FlatButton color="primary" onClick={this.enviar}
+            icon={<i className="material-icons">check_circle</i>}
+            label = 'Finalizar'
+            />
           </div>
         </form>
       </div>
