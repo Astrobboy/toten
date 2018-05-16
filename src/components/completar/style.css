@@ -64,12 +64,11 @@ div.keyboard-wrapper>div.ui-keyboard>div.ui-keyboard-keyset>button {
     border: none;
     padding: 7px;
     border-radius: 20px;
-    font-size: 18px;
+    font-size: 25px;
     
 }
 
 div.keyboard-wrapper>div.ui-keyboard>div.ui-keyboard-keyset>button:hover {
-    margin: 5px;
     background-color: #D1C4E9;
     border: none;
 }
