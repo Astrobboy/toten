@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Keyboard from 'react-material-ui-keyboard';
 import { extendedKeyboard } from 'react-material-ui-keyboard/layouts';
-import * as injectTapEventPlugin from 'react-tap-event-plugin';
+
 
 import axios from 'axios';
 import './style.css';
@@ -181,77 +181,3 @@ class Completar extends Component {
 
 export default Completar;
 
-
-/*
-
-
-
-<div className='nome'>
-            <Grid container spacing={8} alignItems="flex-end">
-              <Grid item>
-                <i className="material-icons">comment</i>
-              </Grid>
-              <Grid item>
-                <TextField 
-                  name='comentario' 
-                  id="input-with-icon-grid"
-                  label="Espaco para comentários"
-                  multiline={true} 
-                  style = {{width: 350}}
-                  onChange={this.handleValue}/>
-              </Grid>
-            </Grid>
-          </div>
-
-
-          <div className='nome'>
-            <Grid container spacing={8} alignItems="flex-end">
-              <Grid item>
-                <i className="material-icons">account_box</i>
-              </Grid>
-              <Grid item>
-                <TextField 
-                  name='nome' 
-                  id="input-with-icon-grid" 
-                  label="Nome" 
-                  style = {{width: 350}}
-                  onChange={this.handleValue}
-                />
-              </Grid>
-            </Grid>
-          </div>
-
-          <div className='nome'>
-            <Grid container spacing={8} alignItems="flex-end">
-              <Grid item>
-                <i className="material-icons">settings_cell</i>
-              </Grid>
-              <Grid item>
-                <TextField 
-                  name='telefone' 
-                  id="input-with-icon-grid" 
-                  label="Telefone" 
-                  style = {{width: 350}}
-                  onChange={this.handleValue}
-                />
-              </Grid>
-            </Grid>
-          </div>
-
-          <div className='nome'>
-            <Grid container spacing={8} alignItems="flex-end">
-              <Grid item>
-                <i className="material-icons">perm_contact_calendar</i>
-              </Grid>
-              <Grid item>
-                <TextField 
-                  name='gmail' 
-                  id="input-with-icon-grid"
-                  label="Gmail"
-                  style = {{width: 350}}
-                  onChange={this.handleValue}
-               />
-              </Grid>
-            </Grid>
-          </div>
-          */

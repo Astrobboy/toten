@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from 'material-ui/TextField';
 import Keyboard from 'react-material-ui-keyboard';
 import { extendedKeyboard } from 'react-material-ui-keyboard/layouts';
-import * as injectTapEventPlugin from 'react-tap-event-plugin';
+
 
 const numericKeyboard = [
     ['Escape', '-', 'Backspace'],
@@ -99,5 +99,3 @@ export default class Keybor extends React.Component {
     
   }
 };
-
-injectTapEventPlugin();

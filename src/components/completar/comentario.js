@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
-import './style.css';
-import Button from 'material-ui/Button';
-import Keyboard from 'react-virtual-keyboard';
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
+import Keyboard from 'react-material-ui-keyboard';
+import { extendedKeyboard } from 'react-material-ui-keyboard/layouts';
 
+import './style.css';
 var valores = (nombre, value) =>{
   localStorage.setItem(`${nombre}`, `${value}`)
 } 
 
 
 class Comentario extends Component {
-  handleValueComentario(e){
-    valores('comentario', e)
+  constructor(props) {
+    super(props);
+    this.state = {
+      comentario: ''
+    };
+
+    this.onInputComentario = this.handleInputComentario.bind(this);
+  }
+
+  handleInputComentario(input) {
+    valores('comentario', input)
+    this.setState({
+      comentario: input
+    });
   }
   proximo() {
     window.location.href = '/completar';
@@ -27,38 +41,31 @@ class Comentario extends Component {
               <i className="material-icons">comment</i> 
             </div>
             <div className='dos'>
-              <Keyboard 
-                  id = 'comentario'
-                  name='comentario'
-                  placeholder='Espaco para comentário'
-                  options={{
-                      type:"input",
-                      layout: "qwerty",
-                      alwaysOpen: false,
-                      usePreview: false,
-                      useWheel: false,
-                      stickyShift: false,
-                      appendLocally: true,
-                      color: "white",
-                      updateOnChange: true,
-                      initialFocus: true,
-                      display: {
-                      "accept" : "Aceptar",
-                      "cancel": "↑"
-                      }
-                  }}
-                  onChange={this.handleValueComentario}
-                  
+              <Keyboard
+                textField={
+                  <TextField
+                    id="text"
+                    value={this.state.comentario}
+                    floatingLabelText="Comentario"
+                    multiLine = {true}
                   />
+                }
+                automatic
+                onInputValueChange={this.onInputComentario}
+                layouts={[extendedKeyboard]}
+                keyboardKeyHeight={50}
+                keyboardKeyWidth={100}
+                keyboardKeySymbolSize={36}
+              />
             </div>
 
           </div>
           
           <div className='button-comentario'>
-            <Button color="primary" onClick={this.proximo}>
-              <i className="material-icons">check_circle</i>
-              Proximo
-            </Button>
+            <FlatButton color="primary" onClick={this.proximo}
+              icon={<i className="material-icons">check_circle</i>}
+              label = 'Proximo'
+            />
           </div>
         </form>
       </div>

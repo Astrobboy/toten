@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import FlatButton from 'material-ui/FlatButton';
 import './style.css';
-import Button from 'material-ui/Button';
 
 var env_start = (nom, value) => {
   localStorage.setItem(`${nom}`, `${value}`)
@@ -139,10 +139,10 @@ class Start extends Component {
               <label id="radio51"htmlFor="radio51" onClick={this.handleStart}>★</label>
             </p><br/>
             <p>
-              <Button color="primary" onClick={this.start}>
-                Enviar 
-                <i className="material-icons">done</i>
-              </Button>
+              <FlatButton color="primary" onClick={this.start}
+                icon={<i className="material-icons">done</i>}
+                label = 'Enviar'
+              />
 
             </p>
           </form>
