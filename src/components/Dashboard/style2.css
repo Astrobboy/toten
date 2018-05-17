@@ -81,7 +81,7 @@ div.comentario-table{
 
 .prueba{
   width: 83.5%;
-  height: 800px;
+  height: auto;
   /*background: blue;*/
   overflow: auto;
   overflow-y: hidden;
@@ -99,4 +99,14 @@ div.comentario-table{
   position:absolute;
   top:740px;
   left:210px;
+}
+
+.car-center{
+  text-align: center;
+  margin-top: 50px;
+  font-size: 2em;
+}
+
+.car-center>div {
+  margin-top: 70px;
 }

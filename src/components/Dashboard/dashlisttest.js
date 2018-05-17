@@ -18,7 +18,8 @@ class DashboardList extends Component {
 
  componentDidMount() {
    let array = [];
-   axios.get('http://10.10.10.35:5000/data').then((res) => {
+   axios.get('http://10.10.10.35:5000/limite/0/1').then((res) => {
+     console.log(res.data.datos)
      for (let i = 0; i < res.data.datos.length; i++) {
        array.push(res.data.datos[i])
      }
