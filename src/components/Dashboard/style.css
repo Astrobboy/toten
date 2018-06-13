@@ -66,7 +66,8 @@ a {
     border-left: none;
 }
 
-.nav ul li a {
+
+.nav ul li button {
     color: #fff;
     padding: 1px;
     float: left;
@@ -194,7 +195,8 @@ div.user-image {
 
 #sidebar-nav ul li {}
 
-#sidebar-nav ul li a {
+
+#sidebar-nav ul li button {
     color: #C2C2C2;
     font-size: .95em;
     padding: 15px 20px;
@@ -206,25 +208,33 @@ div.user-image {
     box-sizing: border-box;
 }
 
-#sidebar-nav ul li:hover a,
-#sidebar-nav ul li:hover a i,
-#sidebar-nav li.active a,
-#sidebar-nav li.active a i {
+#sidebar-nav ul li:hover button,
+#sidebar-nav ul li:hover button i,
+#sidebar-nav li.active button,
+#sidebar-nav li.active button i {
     color: #333;
 }
 
-#sidebar-nav ul li:hover a {
+
+#sidebar-nav ul li:hover button {
     background: #fff;
     color: #333;
 }
 
-#sidebar-nav ul li.active a {
+
+#sidebar-nav ul li.active button {
     background: #fff;
     color: #333;
 }
 
-#sidebar-nav ul li.active a i {
+#sidebar-nav ul li.active button i {
     background: #fff;
+}
+
+button.button {
+    background: #2A2D33;
+    border: none;
+    text-align: left;
 }
 
 #sidebar-nav i {
@@ -327,4 +337,8 @@ div.user-image {
     width: 80%;
     height: 545px;
     overflow-y:hidden;
+}
+.content-start-grap{
+    width: 500px;
+    float: left;
 }

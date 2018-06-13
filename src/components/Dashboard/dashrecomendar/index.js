@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Slider from '../slider';
+import Slider  from '../slider';
 import '../style.css';
 import Mapbar from '../mapa/bar';
 import Mapline from '../mapa/line';
 import Mappie from '../mapa/pie';
+
+import { firebaseDataBase } from './../../../firebase';
 
 class DashStartProbabilidad extends Component {
   constructor(){
@@ -14,40 +15,44 @@ class DashStartProbabilidad extends Component {
     }
   }
 
-  componentWillMount(){
-    this.getChartData();
+  getUsersRef = () => {
+    return firebaseDataBase.ref(`users/`)
   }
 
-  getChartData(){
+  componentDidMount() {
+    
     let [contProbabilidad1, contProbabilidad2, contProbabilidad3, contProbabilidad4, contProbabilidad5, contProbabilidad6, contProbabilidad7, contProbabilidad8, contProbabilidad9, contProbabilidad10] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     let labels = ['Uno', 'Dos', 'Tres', 'Cuatro', 'Cinco', 'Seis', 'Siete', 'Ocho', 'Nueve', 'Diez']
-    axios.get('http://localhost:5000/data').then((res) => {
+    this.getUsersRef().on('value', snapshot => {
+      const users = snapshot.val()
+      let keys = Object.values(users)
+
+      for (let i = 0; i < keys.length; i++) {
       
-      for (let i = 0; i < res.data.datos.length; i++) {
-        if (res.data.datos[i].probabilidad === '1'){
+        if (keys[i].probabilidad === 1){
           contProbabilidad1 += 1
-        }else if (res.data.datos[i].probabilidad === '2'){
+        }else if (keys[i].probabilidad === 2){
           contProbabilidad2 += 1
-        }else if (res.data.datos[i].probabilidad === '3'){
+        }else if (keys[i].probabilidad === 3){
           contProbabilidad3 += 1
-        }else if (res.data.datos[i].probabilidad === '4'){
+        }else if (keys[i].probabilidad === 4){
           contProbabilidad4 += 1
-        }else if (res.data.datos[i].probabilidad === '5'){
+        }else if (keys[i].probabilidad === 5){
           contProbabilidad5 += 1
-        } else if (res.data.datos[i].probabilidad === '6') {
+        } else if (keys[i].probabilidad === 6) {
             contProbabilidad6 += 1
-        } else if (res.data.datos[i].probabilidad === '7') {
+        } else if (keys[i].probabilidad === 7) {
             contProbabilidad7 += 1
-        } else if (res.data.datos[i].probabilidad === '8') {
+        } else if (keys[i].probabilidad === 8) {
             contProbabilidad8 += 1
-        } else if (res.data.datos[i].probabilidad === '9') {
+        } else if (keys[i].probabilidad === 9) {
             contProbabilidad9 += 1
-        } else if (res.data.datos[i].probabilidad === '10') {
+        } else if (keys[i].probabilidad === 10) {
             contProbabilidad10 += 1
         }
 
       }
-    localStorage.setItem('bool', true)
+    
     // Ajax calls here
     this.setState({
       chartProbabilidad: {

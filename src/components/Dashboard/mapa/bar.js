@@ -17,7 +17,6 @@ class Mapbar extends Component {
   }
  
   render(){
-    if(localStorage.getItem('bool')){
       return (
         <div className="chart">
           <Bar
@@ -36,25 +35,6 @@ class Mapbar extends Component {
           />
         </div>
       )
-    }else{
-      return (
-        <div className="chart">
-          <Bar
-            options={{
-              title:{
-                display:this.props.displayTitle,
-                text:'Valoración '+this.props.location,
-                fontSize:25
-              },
-              legend:{
-                display:this.props.displayLegend,
-                position:this.props.legendPosition
-              }
-            }}
-          />
-        </div>
-      )
-    }
   }
 }
 

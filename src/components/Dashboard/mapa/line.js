@@ -17,7 +17,6 @@ class Mapline extends Component {
   }
  
   render(){
-    if(localStorage.getItem('bool')){
       return (
         <div className="chart">
           <Line
@@ -36,25 +35,6 @@ class Mapline extends Component {
           />
         </div>
       )
-    }else{
-      return (
-        <div className="chart">
-          <Line
-            options={{
-              title:{
-                display:this.props.displayTitle,
-                text:'Valoración '+this.props.location,
-                fontSize:25
-              },
-              legend:{
-                display:this.props.displayLegend,
-                position:this.props.legendPosition
-              }
-            }}
-          />
-        </div>
-      )
-    }
   }
 }
 

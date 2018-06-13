@@ -16,7 +16,7 @@ const Datado = ({ data, handlePageChange}) => {
                 <td className='td-title'>E. Buscaba</td>
                 <td className='td-title'>Valoracion de Servicio</td>
               </tr>
-                {data.data.map((datos, i) => {
+                {data.map((datos, i) => {
                   return (
                     <tr key={i}>
                       <td className='td-mos primero'>

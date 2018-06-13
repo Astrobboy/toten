@@ -1,35 +1,25 @@
-import { USER_DATA, PRUEBA, TOKEN_DATA } from "./../constants/";
-//import { urlLogin } from './../api/';
-//import axios from 'axios';
+export const DATA = 'DATA';
+
+export const CHART_ATENDIMIENTO = 'CHART_ATENDIMIENTO';
+export const CHART_QUALIDADE = 'CHART_QUALIDADE';
+export const CHART_VARIEDADE = 'CHART_VARIEDADE';
+export const CHART_PACOTE = 'CHART_PACOTE';
+export const CHART_PRECIO = 'CHART_PRECIO';
+
+export const CHART_CONOCIO = 'CHART_CONOCIO';
+export const CHART_ENCONTRO = 'CHART_ENCONTRO';
 
 
-//esto es una accion creator
-
-export const addUserData = payload => ({ type: USER_DATA, payload });
-export const addTokenData = payload => ({ type: TOKEN_DATA, payload });
-export const addPrueba = payload => ({ type: PRUEBA, payload });
 
 
+//actions
+export const data = payload => ({ type: DATA, payload});
 
-/*
-export const getDataLog = payload => {
+export const chartAtendimiento = payload => ({ type: CHART_ATENDIMIENTO, payload});
+export const chartQualidade = payload => ({ type: CHART_QUALIDADE, payload});
+export const chartVariedade = payload => ({ type: CHART_VARIEDADE, payload});
+export const chartPacote = payload => ({ type: CHART_PACOTE, payload});
+export const chartPrecio = payload => ({ type: CHART_PRECIO, payload});
 
-    return dispatch => {
-
-        axios({
-            method: 'post',
-            url: `${urlLogin}`,
-            headers: {
-                username: payload.username,
-                password: payload.password
-            }
-        })
-            .then(function (res) {
-                console.log(res);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
-    }
-};*/
+export const chartConocio = payload => ({ type: CHART_CONOCIO, payload});
+export const chartEncontro = payload => ({ type: CHART_ENCONTRO, payload});

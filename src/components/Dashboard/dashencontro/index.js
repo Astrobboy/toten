@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import CircularProgress from 'material-ui/CircularProgress';
 
 import Slider from '../slider';
@@ -13,38 +12,37 @@ import { bindActionCreators } from 'redux';
 import * as actions from './../../../actions';
 import { firebaseDataBase } from './../../../firebase';
 
-
-class DashStartPrecio extends Component {
+class DashEncontro extends Component {
 
   getStartRef = id => {
     return firebaseDataBase.ref(`start/${id}`)
   }
 
   componentDidMount(){
-    const { chartPrecio } = this.props;
-    this.getStartRef('precio').on('value', snapshot => {
-      const precio = snapshot.val()
-      if (precio) {
-        chartPrecio([precio.uno, precio.dos, precio.tres, precio.cuatro, precio.cinco])
+    const { chartEncontro } = this.props;
+    this.getStartRef('encontro').on('value', snapshot => {
+      const encontro = snapshot.val()
+      if (encontro) {
+        chartEncontro([encontro.uno, encontro.dos, encontro.tres, encontro.cuatro, encontro.cinco])
       }
     })
   }
 
   render() {
-    const { reducerChartPrecio } = this.props;
+    const { reducerChartEncontro } = this.props
     return (
       <div>
         <Slider/>
-          { reducerChartPrecio ?
+        { reducerChartEncontro ?
       
         <div>
           <div className="content-start-grap">
             <div className="widget-header">
-              <h2>Precio</h2>
+              <h2>Encontro</h2>
             </div>
             <div className="widget-content">
               <div className='chart'>
-                <Mappie chartData={reducerChartPrecio} location="Atacado" legendPosition="bottom"/>
+                <Mappie chartData={reducerChartEncontro} location="Atacado" legendPosition="bottom"/>
               </div>
             </div>
           </div>
@@ -52,29 +50,29 @@ class DashStartPrecio extends Component {
 
           <div className="content-start-grap">
             <div className="widget-header">
-              <h2>Precio</h2>
+              <h2>Encontro</h2>
             </div>
             <div className="widget-content">
               <div className='chart'>
-                <Mapbar chartData={reducerChartPrecio} location="Atacado" legendPosition="bottom"/>
+                <Mapbar chartData={reducerChartEncontro} location="Atacado" legendPosition="bottom"/>
               </div>
             </div>
           </div> 
 
           <div className="content-start-grap">
             <div className="widget-header">
-              <h2>Precio</h2>
+              <h2>Encontro</h2>
             </div>
             <div className="widget-content">
               <div className='chart'>
-                <Mapline chartData={reducerChartPrecio} location="Atacado" legendPosition="bottom"/>
+                <Mapline chartData={reducerChartEncontro} location="Atacado" legendPosition="bottom"/>
               </div>
             </div>
-          </div>  </div>
+          </div> </div>
         :
         <div className='car-center'><div><p>Cargando...</p></div><div><CircularProgress size={300} thickness={5} /></div></div>}
-      
-      </div>
+        
+        </div>
     );
   }
 
@@ -82,8 +80,12 @@ class DashStartPrecio extends Component {
 
 const MapDispatchToPropsActions = dispatch => bindActionCreators(actions, dispatch);
 
-const MapStateToProps = ({ reducerChartPrecio }) => ({ reducerChartPrecio })
+const MapStateToProps = ({
+  reducerChartEncontro
+}) => ({
+  reducerChartEncontro
+})
 
-export default withRouter(connect(MapStateToProps, MapDispatchToPropsActions)(DashStartPrecio));
+export default connect(MapStateToProps, MapDispatchToPropsActions)(DashEncontro);
 
 

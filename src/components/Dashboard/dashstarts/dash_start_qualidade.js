@@ -1,79 +1,40 @@
 import React, { Component } from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
-import axios from 'axios';
+
 import Slider from '../slider';
 import '../style.css';
 import Mapbar from '../mapa/bar';
 import Mapline from '../mapa/line';
 import Mappie from '../mapa/pie';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from './../../../actions';
+import { firebaseDataBase } from './../../../firebase';
+
+
 class DashStartQualidade extends Component {
-  constructor(){
-    super();
-    this.state = {
-      chartQualidade: {}
-    }
+  
+  getStartRef = id => {
+    return firebaseDataBase.ref(`start/${id}`)
   }
 
-  componentWillMount(){
-    this.getChartData();
-  }
-
-  getChartData(){
-    let [contQualidade1, contQualidade2, contQualidade3, contQualidade4, contQualidade5] = [0, 0, 0, 0, 0]
-    let labels = ['Uno', 'Dos', 'Tres', 'Cuatro', 'Cinco']
-    axios.get('http://10.10.10.35:5000/qualidade').then((res) => {
-      
-      for (let i = 0; i < res.data.length; i++) {
-        if (res.data[i] === '1'){
-          contQualidade1 += 1
-        }else if (res.data[i] === '2'){
-          contQualidade2 += 1
-        }else if (res.data[i] === '3'){
-          contQualidade3 += 1
-        }else if (res.data[i] === '4'){
-          contQualidade4 += 1
-        }else if (res.data[i] === '5'){
-          contQualidade5 += 1
-        }
-
-      }
-    localStorage.setItem('bool', true)
-    // Ajax calls here
-    this.setState({
-      chartQualidade: {
-        //propiedades dentro del data
-        labels: labels,
-        datasets: [{
-          label: 'Qualidade',
-          //numero de datos
-          data: [
-            contQualidade1,
-            contQualidade2,
-            contQualidade3,
-            contQualidade4,
-            contQualidade5
-          ],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 159, 64, 0.6)'
-          ]
-        }]
+  componentDidMount(){
+    const { chartQualidade } = this.props;
+    this.getStartRef('qualidade').on('value', snapshot => {
+      const qualidade = snapshot.val()
+      if (qualidade) {
+        chartQualidade([qualidade.uno, qualidade.dos, qualidade.tres, qualidade.cuatro, qualidade.cinco])
       }
     })
-    
-  });
-}
+  }
 
   render() {
+    const { reducerChartQualidade } = this.props;
     return (
       <div>
         <Slider/>
-       { this.state.chartQualidade ?
+       { reducerChartQualidade ?
       
         <div> 
           <div className="content-start-grap">
@@ -82,7 +43,7 @@ class DashStartQualidade extends Component {
             </div>
             <div className="widget-content">
               <div className='chart'>
-                <Mappie chartData={this.state.chartQualidade} location="Atacado" legendPosition="bottom"/>
+                <Mappie chartData={reducerChartQualidade} location="Atacado" legendPosition="bottom"/>
               </div>
             </div>
           </div>
@@ -94,7 +55,7 @@ class DashStartQualidade extends Component {
             </div>
             <div className="widget-content">
               <div className='chart'>
-                <Mapbar chartData={this.state.chartQualidade} location="Atacado" legendPosition="bottom"/>
+                <Mapbar chartData={reducerChartQualidade} location="Atacado" legendPosition="bottom"/>
               </div>
             </div>
           </div> 
@@ -105,7 +66,7 @@ class DashStartQualidade extends Component {
             </div>
             <div className="widget-content">
               <div className='chart'>
-                <Mapline chartData={this.state.chartQualidade} location="Atacado" legendPosition="bottom"/>
+                <Mapline chartData={reducerChartQualidade} location="Atacado" legendPosition="bottom"/>
               </div>
             </div>
           </div> </div>
@@ -118,5 +79,13 @@ class DashStartQualidade extends Component {
 
 }
 
-export default DashStartQualidade;
+const MapDispatchToPropsActions = dispatch => bindActionCreators(actions, dispatch);
+
+const MapStateToProps = ({
+  reducerChartQualidade
+}) => ({
+  reducerChartQualidade
+})
+
+export default connect(MapStateToProps, MapDispatchToPropsActions)(DashStartQualidade);
 

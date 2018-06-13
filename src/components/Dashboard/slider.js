@@ -1,7 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import './style.css'; 
 
-const Slider = () => {
+
+/*const handleOnClick = () => {
+  this.props.history.push('/startprecio');
+}*/
+
+
+//const Slider = () => (
+class Slider extends Component {
+  render() {
+    const valores = [
+      {ruta: '/', icon: 'ballot', name:'Dashboard', key:1},
+      {ruta: '/list', icon: 'list', name:'Lista General', key:2},
+      {ruta: '/dashprobabilidad', icon: 'assessment', name:'Probabilidad Recomendar', key:3},
+      {ruta: '/startatendimiento', icon: 'grade', name:'Gráfico Atendimiento', key:4},
+      {ruta: '/startqualidade', icon: 'star_half', name:'Gráfico Qualidade', key:5},
+      {ruta: '/startvariedade', icon: 'grade', name:'Gráfico Variedade', key:6},
+      {ruta: '/startpacote', icon: 'store', name:'Gráfico de Pacote', key:7},
+      {ruta: '/startprecio', icon: 'grade', name:'Gráfico de Precio', key:8},
+      {ruta: '/dashconocio', icon: 'create', name:'Conocio', key:9 },
+      {ruta: '/list', icon: '', name:'', key:10 },
+      {ruta: '/list', icon: '', name:'  ', key:11 }
+
+
+    ]
     return (
       <div>
         <section id="sidebar"> 
@@ -9,18 +33,13 @@ const Slider = () => {
           </div> 
           <div id="sidebar-nav">   
             <ul>
-              <li className="active"><a href="/dashboard"><i className="material-icons">ballot</i> Dashboard</a></li>
-              <li><a href="/list"><i className="material-icons">list</i> Lista General</a></li>
-              <li><a href="/dashprobabilidad"><i className="material-icons">assessment</i> Probabilidad Recomendar</a></li>     
-              <li><a href="/startatendimiento"><i className="material-icons">grade</i> Gráfico Atendimiento</a></li>
-              <li><a href="/startqualidade"><i className="material-icons">grade</i> Gráfico Qualidade</a></li>
-              <li><a href="/startvariedade"><i className="material-icons">grade</i> Gráfico Variedade</a></li>
-              <li><a href="/startpacote"><i className="material-icons">store</i> Gráfico de Pacote</a></li>
-              <li><a href="/startprecio"><i className="material-icons">grade</i>Gráfico de Precio</a></li>
-              <li><a href="/list"><i className="fa fa-users"></i> </a></li>
-              <li><a href="/list"><i className="fa fa-calendar-o"></i> </a></li>
-              <li><a href="/list"><i className="fa fa-calendar"></i> </a></li>
-              <li><a href="/list"><i className="fa fa-calendar"></i> </a></li>
+              { valores.map(valor => (
+                valor.ruta === '/'?
+                <li className="active" key={valor.key.toString()}><button className="button" onClick={() => this.props.history.push(valor.ruta)}><i className="material-icons">{valor.icon}</i>{valor.name}</button></li>:
+                <li key={valor.key.toString()}><button className="button"  onClick={() => this.props.history.push(valor.ruta)}><i className="material-icons">{valor.icon}</i>{valor.name}</button></li>
+              ))
+
+              }
             </ul>
           </div>
         </section>
@@ -49,7 +68,7 @@ const Slider = () => {
         </section>
         </div>
     );
-};
+  }
+}
 
-
-export default Slider;
+export default withRouter(Slider)

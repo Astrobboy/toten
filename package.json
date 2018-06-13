@@ -6,6 +6,7 @@
     "@material-ui/icons": "^1.0.0-beta.43",
     "axios": "^0.18.0",
     "chart.js": "^2.7.2",
+    "firebase": "^5.0.4",
     "getusermedia": "^2.0.1",
     "material-ui": "^0.20.1",
     "prop-types": "^15.6.1",
@@ -13,11 +14,13 @@
     "react-chartjs-2": "^2.7.2",
     "react-dom": "^16.3.2",
     "react-material-ui-keyboard": "^6.2.1",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
     "react-tap-event-plugin": "^3.0.2",
     "react-virtual-keyboard": "^1.0.2",
-    "react-webcam": "^0.5.0"
+    "react-webcam": "^0.5.0",
+    "redux": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

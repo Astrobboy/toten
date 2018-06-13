@@ -1,80 +1,38 @@
 import React, { Component } from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
-import axios from 'axios';
-import Slider from '../slider';
+
+import  Slider  from '../slider';
 import '../style.css';
 import Mapbar from '../mapa/bar';
 import Mapline from '../mapa/line';
 import Mappie from '../mapa/pie';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from './../../../actions';
+import { firebaseDataBase } from './../../../firebase';
+
 class DashStartAtendimiento extends Component {
-  constructor(){
-    super();
-    this.state = {
-      chartAtendimiento: null
-    }
+  getStartRef = id => {
+    return firebaseDataBase.ref(`start/${id}`)
   }
 
-  componentWillMount(){
-    this.getChartData();
-  }
-
-  getChartData(){
-    let [contAtendimiento1, contAtendimiento2, contAtendimiento3, contAtendimiento4, contAtendimiento5] = [0, 0, 0, 0, 0]
-    let labels = ['Uno', 'Dos', 'Tres', 'Cuatro', 'Cinco']
-    axios.get('http://10.10.10.35:5000/atendimiento').then((res) => {
-      
-      for (let i = 0; i < res.data.length; i++) {
-        if (res.data[i] === '1'){
-          contAtendimiento1 += 1
-        }else if (res.data[i] === '2'){
-          contAtendimiento2 += 1
-        }else if (res.data[i] === '3'){
-          contAtendimiento3 += 1
-        }else if (res.data[i] === '4'){
-          contAtendimiento4 += 1
-        }else if (res.data[i] === '5'){
-          contAtendimiento5 += 1
-        }
-
-      }
-    localStorage.setItem('bool', true)
-    // Ajax calls here
-    this.setState({
-      chartAtendimiento: {
-        //propiedades dentro del data
-        labels: labels,
-        datasets: [{
-          label: 'Atendimiento',
-          //numero de datos
-          data: [
-            contAtendimiento1,
-            contAtendimiento2,
-            contAtendimiento3,
-            contAtendimiento4,
-            contAtendimiento5
-          ],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 159, 64, 0.6)'
-          ]
-        }]
+  componentDidMount(){
+    const { chartAtendimiento } = this.props;
+    this.getStartRef('atendimiento').on('value', snapshot => {
+      const atendimiento = snapshot.val()
+      if (atendimiento) {
+        chartAtendimiento([atendimiento.uno, atendimiento.dos, atendimiento.tres, atendimiento.cuatro, atendimiento.cinco])
       }
     })
-    
-  });
-}
+  }
 
   render() {
+    const { reducerChartAtendimiento } = this.props
     return (
       <div>
         <Slider/>
-      {
-        this.state.chartAtendimiento ?
+      { reducerChartAtendimiento ?
       
       <div>  <div className="content-start-grap">
           <div className="widget-header">
@@ -82,7 +40,7 @@ class DashStartAtendimiento extends Component {
           </div>
           <div className="widget-content">
             <div className='chart'>
-              <Mappie chartData={this.state.chartAtendimiento} location="Atacado" legendPosition="bottom"/>
+              <Mappie chartData={reducerChartAtendimiento} location="Atacado" legendPosition="bottom"/>
             </div>
           </div>
         </div>
@@ -94,7 +52,7 @@ class DashStartAtendimiento extends Component {
           </div>
           <div className="widget-content">
             <div className='chart'>
-              <Mapbar chartData={this.state.chartAtendimiento} location="Atacado" legendPosition="bottom"/>
+              <Mapbar chartData={reducerChartAtendimiento} location="Atacado" legendPosition="bottom"/>
             </div>
           </div>
         </div> 
@@ -105,7 +63,7 @@ class DashStartAtendimiento extends Component {
           </div>
           <div className="widget-content">
             <div className='chart'>
-              <Mapline chartData={this.state.chartAtendimiento} location="Atacado" legendPosition="bottom"/>
+              <Mapline chartData={reducerChartAtendimiento} location="Atacado" legendPosition="bottom"/>
             </div>
           </div>
         </div> </div>
@@ -117,5 +75,14 @@ class DashStartAtendimiento extends Component {
 
 }
 
-export default DashStartAtendimiento;
+const MapDispatchToPropsActions = dispatch => bindActionCreators(actions, dispatch);
+
+const MapStateToProps = ({
+  reducerChartAtendimiento
+}) => ({
+  reducerChartAtendimiento
+})
+
+export default connect(MapStateToProps, MapDispatchToPropsActions)(DashStartAtendimiento);
+
 

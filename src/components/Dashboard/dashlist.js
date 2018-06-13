@@ -1,36 +1,75 @@
 import React, { Component } from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
-import axios from 'axios';
-import Slider from './slider';
-import Datado from './listtest';
+
+import  Slider  from './slider';
+import Datado from './list';
 import './style.css';
- 
+
+
+import * as actions from './../../actions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { firebaseDataBase } from './../../firebase';
 
 class DashboardList extends Component {
- constructor(props) {
-    super(props);
-    this.state = { data: 
-      [
-        null
-      ]
-    }
- }
-
- componentDidMount() {
-   let array = [];
-   axios.get('http://10.10.10.35:5000/data').then((res) => {
-     for (let i = 0; i < res.data.datos.length; i++) {
-       array.push(res.data.datos[i])
-     }
-     this.setState({
-       data: array
-     })
-
-   })
+  getUsersRef = () => {
+    return firebaseDataBase.ref(`users/`)
   }
 
- componentWillMount(){
-  console.log("1")
+  constructor(props) {
+    super(props)
+    const {
+      data
+    } = this.props
+    this.getUsersRef().on('value', snapshot => {
+      const users = snapshot.val()
+      let array = [];
+      let keys = Object.values(users)
+
+      for (let i = 0; i < keys.length; i++) {
+        array.push(keys[i])
+      }
+      data(array)
+    });
+  }
+
+
+
+ handlePageChange(pageNumber) {
+    console.log(`active page is ${pageNumber}`);
+    //this.setState({activePage: pageNumber});
+  }
+
+  render() {
+    const { reducerData } = this.props;
+    return (
+      <div>
+        <Slider/>
+        { !!reducerData ? <Datado data={reducerData} handlePageChange={this.handlePageChange}/> :
+         <div className='car-center'><div><p>Cargando...</p></div><div><CircularProgress size={300} thickness={5} /></div></div>}
+    
+      </div>
+    );
+  }
+
+}
+
+const MapDispatchToPropsActions = dispatch => bindActionCreators(actions, dispatch);
+
+const MapStateToProps = ({
+  reducerData
+}) => ({
+  reducerData
+})
+
+export default connect(MapStateToProps, MapDispatchToPropsActions)(DashboardList);
+
+
+
+
+/*
+ componentWillMount() {
+   console.log("1")
   let array = [];
   axios.get('http://10.10.10.35:5000/dataclient').then((res) => {
     for (let i = 0; i < res.data.datos.length; i++){
@@ -40,23 +79,4 @@ class DashboardList extends Component {
  
   })
  }
-
- handlePageChange(pageNumber) {
-    console.log(`active page is ${pageNumber}`);
-    //this.setState({activePage: pageNumber});
-  }
-
-  render() {
-    return (
-      <div>
-        <Slider/>
-        { this.state.data[0] ? <Datado data={this.state} handlePageChange={this.handlePageChange}/> :
-         <div className='car-center'><div><p>Cargando...</p></div><div><CircularProgress size={300} thickness={5} /></div></div>}
-        
-      </div>
-    );
-  }
-
-}
-
-export default DashboardList;
+*/
