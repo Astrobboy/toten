@@ -21,7 +21,7 @@ class Slider extends Component {
       {ruta: '/startpacote', icon: 'store', name:'Gráfico de Pacote', key:7},
       {ruta: '/startprecio', icon: 'grade', name:'Gráfico de Precio', key:8},
       {ruta: '/dashconocio', icon: 'create', name:'Conocio', key:9 },
-      {ruta: '/list', icon: '', name:'', key:10 },
+      {ruta: '/dashencontro', icon: 'playlist_add_check', name:'Encontro', key:10 },
       {ruta: '/list', icon: '', name:'  ', key:11 }
 
 
@@ -51,9 +51,9 @@ class Slider extends Component {
                 <ul>
                   <li className="nav-profile">
                     <div className="nav-profile-image">
-                      < img src = "https://4.bp.blogspot.com/-evFQddAcl1s/VziejLK7DvI/AAAAAAAAOjU/rOe2QbZ32BMIe9SUuzAogmDtHCvQQO5rACLcB/s1600/Atacado%2BGames.png"
+                      <img src = "https://4.bp.blogspot.com/-evFQddAcl1s/VziejLK7DvI/AAAAAAAAOjU/rOe2QbZ32BMIe9SUuzAogmDtHCvQQO5rACLcB/s1600/Atacado%2BGames.png"
                       alt = "profile-img"
-                      alt = "profile image" / >
+                      alt = "profile image"/>
                       <div className="nav-profile-name">Atacado<i className="fa fa-caret-down"></i></div>
                     </div>
                   </li>

@@ -19,8 +19,9 @@ class DashboardList extends Component {
   constructor(props) {
     super(props)
     const {
-      data
+      data, showHide
     } = this.props
+
     this.getUsersRef().on('value', snapshot => {
       const users = snapshot.val()
       let array = [];
@@ -30,6 +31,7 @@ class DashboardList extends Component {
         array.push(keys[i])
       }
       data(array)
+      showHide(false)
     });
   }
 
@@ -45,7 +47,7 @@ class DashboardList extends Component {
     return (
       <div>
         <Slider/>
-        { !!reducerData ? <Datado data={reducerData} handlePageChange={this.handlePageChange}/> :
+        { !!reducerData ? <Datado dataArray={reducerData} handlePageChange={this.handlePageChange}/> :
          <div className='car-center'><div><p>Cargando...</p></div><div><CircularProgress size={300} thickness={5} /></div></div>}
     
       </div>

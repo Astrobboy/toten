@@ -9,6 +9,9 @@ export const CHART_PRECIO = 'CHART_PRECIO';
 export const CHART_CONOCIO = 'CHART_CONOCIO';
 export const CHART_ENCONTRO = 'CHART_ENCONTRO';
 
+export const DATA_CLIENT = 'DATA_CLIENT';
+export const SHOW = 'SHOW';
+
 
 
 
@@ -23,3 +26,6 @@ export const chartPrecio = payload => ({ type: CHART_PRECIO, payload});
 
 export const chartConocio = payload => ({ type: CHART_CONOCIO, payload});
 export const chartEncontro = payload => ({ type: CHART_ENCONTRO, payload});
+
+export const dataClient = payload => ({ type: DATA_CLIENT, payload});
+export const showHide = payload => ({ type: SHOW, payload});

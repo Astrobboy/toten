@@ -6,9 +6,32 @@ import {
   CHART_PACOTE,
   CHART_PRECIO,
   CHART_CONOCIO,
-  CHART_ENCONTRO
+  CHART_ENCONTRO,
+  DATA_CLIENT,
+  SHOW
 } from './../actions';
 
+export const reducerShow= (state = {}, action) => {
+  switch (action.type) {
+    case SHOW:
+      return action.payload
+
+    default:
+      return state;
+  }
+
+}
+
+export const reducerDataCLient = (state = {}, action) => {
+  switch (action.type) {
+    case DATA_CLIENT:
+      return action.payload
+
+    default:
+      return state;
+  }
+
+}
 
 export const reducerChartConocio = (state = {}, action) => {
   switch (action.type) {

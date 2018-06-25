@@ -8,7 +8,9 @@ import {
   reducerChartPacote,
   reducerChartPrecio,
   reducerChartConocio,
-  reducerChartEncontro
+  reducerChartEncontro,
+  reducerDataCLient, 
+  reducerShow
   
 } from './reducerFull';
 
@@ -20,5 +22,7 @@ export default combineReducers({
   reducerChartPacote,
   reducerChartPrecio,
   reducerChartConocio,
-  reducerChartEncontro
+  reducerChartEncontro,
+  reducerDataCLient, 
+  reducerShow
 })
